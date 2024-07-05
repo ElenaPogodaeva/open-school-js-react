@@ -1,0 +1,19 @@
+@import '../../App.variables.scss';
+
+.header {
+  background: $bg-dark;
+  padding-top: 23px;
+}
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 23px;
+  border-bottom: 1px solid $white;
+}
+
+.cartLink {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
