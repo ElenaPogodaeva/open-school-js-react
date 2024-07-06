@@ -1,8 +1,11 @@
 import { NavLink } from 'react-router-dom';
+import { useState } from 'react';
 import style from './Header.module.scss';
 import cartIcon from '../../assets/cart.svg';
 
 export function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
     <header className={style.header}>
       <div className="container">
@@ -10,7 +13,19 @@ export function Header() {
           <NavLink to="/" className="logo">
             Goods4you
           </NavLink>
-          <nav className={style.headerMenu}>
+          <button
+            type="button"
+            aria-label="Close"
+            className={style.menuIcon}
+            onClick={() => setIsMenuOpen(true)}
+          />
+          <nav className={`${style.headerMenu} ${isMenuOpen ? style.active : ''}`}>
+            <button
+              type="button"
+              aria-label="Menu"
+              className={style.closeIcon}
+              onClick={() => setIsMenuOpen(false)}
+            />
             <ul className="menu-list">
               <li>
                 <NavLink to="/" className="menu-link">
