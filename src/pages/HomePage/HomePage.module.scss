@@ -1,0 +1,106 @@
+@import '../../App.variables.scss';
+
+.heroSection {
+  padding: 115px 0;
+  position: relative;
+  &::after {
+    font-size: 200px;
+    line-height: 300px;
+    font-weight: 700;
+    color: $text-white;
+    content: "Goods4you"; 
+    position: absolute; 
+    top: 122px;
+    left: 0;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+  }
+}
+.heroContent {
+  max-width: 550px;
+  width: 100%;
+  position: relative;
+  z-index: 10;
+}
+.heroTitle {
+  font-size: 36px;
+  line-height: 50px;
+  font-weight: 400;
+  margin-bottom: 30px;
+}
+.heroText {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+
+.catalogTitle {
+  margin-bottom: 48px;
+}
+.catalogInput {
+  font-size: 16px;
+  line-height: 22px;
+  color: $black;
+  background: $light-gray;
+  border-radius: 4px;
+  padding: 20px;
+  width: 100%;
+  margin-bottom: 48px;
+  &::placeholder {
+    color: $font-gray;
+  }
+}
+
+.faqSection {
+  padding: 60px 0;
+}
+.faqContainer {
+  max-width: 910px;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+.faqTitle {
+  margin-bottom: 20px;
+}
+
+.accordion {
+  font-size: 20px;
+  line-height: 30px;
+  text-align: left;
+  padding: 25px 0;
+  background: $bg-dark;
+  color: $white;
+  width: 100%;
+  border-top: 1px solid $white;
+  //transition: .4s;
+  cursor: pointer;
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    top: 28px;
+    right: 0;
+    background: url("../../assets/add-icon.svg") center no-repeat;
+    width: 25px;
+    height: 25px;
+    .active {
+      transform: rotate(45deg);
+    }
+  }
+}
+
+.accordionText {
+  cursor: pointer;
+  width: 100%;
+  font-size: 16px;
+  line-height: 26px;
+  font-weight: 600;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  p {
+    padding-bottom: 20px;
+  }
+}
