@@ -1,9 +1,9 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { IProduct } from '../../types/types';
 import style from './Product.module.scss';
 import productImg from '../../assets/image.png';
 import cartIcon from '../../assets/cart-icon.svg';
-import { useNavigate } from 'react-router-dom';
 
 type ProductProps = {
   product: IProduct;
@@ -37,7 +37,7 @@ export function Product({ product }: ProductProps) {
       onClick={handleProductClick}
     >
       <div className={style.imgWrapper}>
-        <img src={productImg} className={style.productImg} alt="Product Image" />
+        <img src={productImg} className={style.productImg} alt="Product" />
         <div className={`${style.overlay} ${isHover ? style.active : ''}`}>
           <div className={style.overlayText}>Show details</div>
         </div>
@@ -47,8 +47,12 @@ export function Product({ product }: ProductProps) {
           <p className={`${style.productTitle} ${isHover ? style.active : ''}`}>{title}</p>
           <p className={style.productPrice}>{price} $</p>
         </div>
-        <button type="button" className="button add-button" onMouseOver={stopPropagation}
-          onClick={handleCartClick}>
+        <button
+          type="button"
+          className="button add-button"
+          onMouseOver={stopPropagation}
+          onClick={handleCartClick}
+        >
           <img src={cartIcon} alt="Cart Icon" />
         </button>
       </div>
