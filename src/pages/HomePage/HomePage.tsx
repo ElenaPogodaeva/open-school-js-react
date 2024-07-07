@@ -1,56 +1,11 @@
 import Accordion from '../../components/Accordion/Accordion';
 import ProductList from '../../components/ProductList/ProductList';
-import ProductDetail from '../ProductDetail/ProductDetail';
+import { productData, questionsData } from '../../mocks/mock';
 import style from './HomePage.module.scss';
-
-// const questionsData = [
-//   {
-//     title: 'How can I track the status of my order?',
-//     content: `After placing your order, you will receive a confirmation email containing your order
-//               number and a tracking link. You can also log in to your account on our website and go
-//               to the &quot;My Orders&ldquo; section to track your delivery status.`,
-//   },
-//   {
-//     title: 'What payment methods do you accept?',
-//     content: `After placing your order, you will receive a confirmation email containing your order
-//               number and a tracking link. You can also log in to your account on our website and go
-//               to the &quot;My Orders&ldquo; section to track your delivery status.`,
-//   },
-//   {
-//     title: 'How can I return or exchange an item?',
-//     content: `After placing your order, you will receive a confirmation email containing your order
-//                 number and a tracking link. You can also log in to your account on our website and go
-//                 to the &quot;My Orders&ldquo; section to track your delivery status.`,
-//   },
-// ];
-
-const PRODUCT_COUNT = 12;
-
-const productData = new Array(PRODUCT_COUNT).fill({}).map((_, index) => ({
-  id: index,
-  title: `Essence Mascara Lash Princess`,
-  description: '',
-  price: 110,
-  rating: 4,
-}));
-
-const questions = [
-  'How can I track the status of my order?',
-  'What payment methods do you accept?',
-  'How can I return or exchange an item?',
-];
-
-const questionsData = questions.map((item) => ({
-  title: item,
-  content: `After placing your order, you will receive a confirmation email containing your order
-              number and a tracking link. You can also log in to your account on our website and go
-              to the "My Orders" section to track your delivery status.`,
-}));
 
 export function HomePage() {
   return (
     <>
-      <ProductDetail />
       <section className={`dark-section ${style.heroSection}`}>
         <div className="container">
           <div className={style.heroContent}>
@@ -74,7 +29,7 @@ export function HomePage() {
           </h2>
           <input type="text" className={style.catalogInput} placeholder="Search by title" />
           <ProductList products={productData} />
-          <button type="button" className="button">
+          <button type="button" className={`button ${style.catalogBtn}`}>
             Show more
           </button>
         </div>

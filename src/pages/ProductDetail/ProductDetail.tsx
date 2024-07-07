@@ -1,16 +1,8 @@
+import { useParams } from 'react-router-dom';
 import style from './ProductDetail.module.scss';
 import productImg from '../../assets/product-detail.png';
 import Star from '../../components/Star/Star';
-import { useParams } from 'react-router-dom';
-
-const ITEMS_COUNT_OF_COLUMN_DATA = 12;
-const productData = new Array(ITEMS_COUNT_OF_COLUMN_DATA).fill({}).map((_, index) => ({
-  id: `${index}`,
-  title: `Essence Mascara Lash Princess`,
-  description: '',
-  price: 110,
-  rating: 4,
-}));
+import { productData } from '../../mocks/mock';
 
 const MAX_RATING = 5;
 const stars = new Array(MAX_RATING).fill(0);
@@ -22,17 +14,17 @@ const colors = {
 export function ProductDetail() {
   const { id } = useParams();
   const product = productData[Number(id)];
-  const {title, description, rating} = product;
-  
+  const { title, description, rating } = product;
+
   return (
     <section className="section">
       <div className="container">
         <div className={style.content}>
           <div className={style.imgWrapper}>
-            <img src={productImg} className={style.productImg} />
+            <img src={productImg} alt="Product" />
             <div className={style.thumbnailWrapper}>
               {new Array(6).fill(0).map((_, index) => (
-                <img key={index} src={productImg} className={style.thumbnailImg} />
+                <img key={index} src={productImg} alt="Product thumbnail" />
               ))}
             </div>
           </div>
@@ -47,9 +39,7 @@ export function ProductDetail() {
               <span>electronics, selfie accessories</span>
             </div>
             <p className={style.stock}>In Stock - Only 5 left!</p>
-            <p className={style.description}>
-              {description}
-            </p>
+            <p className={style.description}>{description}</p>
             <div className={style.other}>
               <p>1 month warranty</p>
               <p>Ships in 1 month</p>
@@ -64,7 +54,7 @@ export function ProductDetail() {
                 </div>
               </div>
               <button type="button" className="button">
-                Show more
+                Add to cart
               </button>
             </div>
           </div>

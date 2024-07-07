@@ -16,10 +16,10 @@ export function Accordion({ title, content }: AccordionProps) {
 
   return (
     <div onClick={handleClick}>
-      <button type="button" className={style.accordion}>
+      <div className={style.accordion}>
         <h3>{title}</h3>
-        <img className={`${isOpen ? style.active : ''}`} src={addIcon} alt="Cart Icon" />
-      </button>
+        <img className={`${isOpen ? style.active : ''}`} src={addIcon} alt="Open Icon" />
+      </div>
       <div className={`${style.accordionText} ${isOpen ? style.active : ''}`}>
         <p>{content}</p>
       </div>
