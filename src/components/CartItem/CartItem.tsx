@@ -14,7 +14,7 @@ export function CartItem({ product }: ProductProps) {
   return (
     <div className={style.cartItem}>
       <div className={style.itemLeft}>
-        <img src={productImg} className={style.itemImg} alt="Product Image" />
+        <img src={productImg} className={style.itemImg} alt="Product" />
         <div className={style.itemContent}>
           <h3 className={style.itemTitle}>{title}</h3>
           <p className={style.itemPrice}>{price} $</p>
