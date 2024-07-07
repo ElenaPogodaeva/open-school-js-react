@@ -1,18 +1,56 @@
+import Accordion from '../../components/Accordion/Accordion';
 import ProductList from '../../components/ProductList/ProductList';
+import ProductDetail from '../ProductDetail/ProductDetail';
 import style from './HomePage.module.scss';
 
+// const questionsData = [
+//   {
+//     title: 'How can I track the status of my order?',
+//     content: `After placing your order, you will receive a confirmation email containing your order
+//               number and a tracking link. You can also log in to your account on our website and go
+//               to the &quot;My Orders&ldquo; section to track your delivery status.`,
+//   },
+//   {
+//     title: 'What payment methods do you accept?',
+//     content: `After placing your order, you will receive a confirmation email containing your order
+//               number and a tracking link. You can also log in to your account on our website and go
+//               to the &quot;My Orders&ldquo; section to track your delivery status.`,
+//   },
+//   {
+//     title: 'How can I return or exchange an item?',
+//     content: `After placing your order, you will receive a confirmation email containing your order
+//                 number and a tracking link. You can also log in to your account on our website and go
+//                 to the &quot;My Orders&ldquo; section to track your delivery status.`,
+//   },
+// ];
+
 const PRODUCT_COUNT = 12;
+
 const productData = new Array(PRODUCT_COUNT).fill({}).map((_, index) => ({
-  id: `${index}`,
+  id: index,
   title: `Essence Mascara Lash Princess`,
   description: '',
   price: 110,
   rating: 4,
 }));
 
+const questions = [
+  'How can I track the status of my order?',
+  'What payment methods do you accept?',
+  'How can I return or exchange an item?',
+];
+
+const questionsData = questions.map((item) => ({
+  title: item,
+  content: `After placing your order, you will receive a confirmation email containing your order
+              number and a tracking link. You can also log in to your account on our website and go
+              to the "My Orders" section to track your delivery status.`,
+}));
+
 export function HomePage() {
   return (
     <>
+      <ProductDetail />
       <section className={`dark-section ${style.heroSection}`}>
         <div className="container">
           <div className={style.heroContent}>
@@ -44,32 +82,9 @@ export function HomePage() {
       <section className={`dark-section ${style.faqSection}`}>
         <div className={style.faqContainer}>
           <h2 className={`section-title ${style.faqTitle}`}>FAQ</h2>
-          <button type="button" className={style.accordion}>How can I track the status of my order?</button>
-          <div className={style.accordionText}>
-            <p>
-              After placing your order, you will receive a confirmation email containing your order
-              number and a tracking link. You can also log in to your account on our website and go
-              to the &quot;My Orders&ldquo; section to track your delivery status.
-            </p>
-          </div>
-
-          <button type="button" className={style.accordion}>Section 2</button>
-          <div className={style.accordionText}>
-            <p>
-              After placing your order, you will receive a confirmation email containing your order
-              number and a tracking link. You can also log in to your account on our website and go
-              to the &quot;My Orders&ldquo; section to track your delivery status.
-            </p>
-          </div>
-
-          <button type="button" className={style.accordion}>Section 3</button>
-          <div className={style.accordionText}>
-            <p>
-              After placing your order, you will receive a confirmation email containing your order
-              number and a tracking link. You can also log in to your account on our website and go
-              to the &quot;My Orders&ldquo; section to track your delivery status.
-            </p>
-          </div>
+          {questionsData.map((item, index) => (
+            <Accordion key={index} title={item.title} content={item.content} />
+          ))}
         </div>
       </section>
     </>
