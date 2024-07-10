@@ -1,5 +1,5 @@
-import { Product } from '../../../entities/product';
-import { IProduct } from '../../../entities/product/model/types';
+import { Product } from '@/entities/product';
+import { IProduct } from '@/entities/product/model/types';
 import style from './ProductList.module.scss';
 
 type ProductListProps = {

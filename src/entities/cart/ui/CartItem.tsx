@@ -1,8 +1,8 @@
-import { IProduct } from '../../product/model/types';
+import productImg from '@/shared/assets/images/product-detail.png';
+import addIcon from '@/shared/assets/images/plus.svg';
+import minusIcon from '@/shared/assets/images/minus.svg';
 import style from './CartItem.module.scss';
-import productImg from '../../../shared/assets/images/product-detail.png';
-import addIcon from '../../../shared/assets/images/plus.svg';
-import minusIcon from '../../../shared/assets/images/minus.svg';
+import { IProduct } from '../../product/model/types';
 
 type ProductProps = {
   product: IProduct;

@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom';
+import productImg from '@/shared/assets/images/product-detail.png';
+import { Star } from '@/shared/ui';
+import { productData } from '@/shared/mocks/mock';
 import style from './ProductDetail.module.scss';
-import productImg from '../../../shared/assets/images/product-detail.png';
-import { Star } from '../../../shared/ui';
-import { productData } from '../../../shared/mocks/mock';
 
 const MAX_RATING = 5;
 const stars = new Array(MAX_RATING).fill(0);

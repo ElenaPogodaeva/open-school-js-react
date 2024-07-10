@@ -1,6 +1,6 @@
-import { ProductList } from '../../../widgets/product-list';
-import { Accordion } from '../../../shared/ui';
-import { productData, questionsData } from '../../../shared/mocks/mock';
+import { ProductList } from '@/widgets/product-list';
+import { Accordion } from '@/shared/ui';
+import { productData, questionsData } from '@/shared/mocks/mock';
 import style from './HomePage.module.scss';
 
 export function HomePage() {

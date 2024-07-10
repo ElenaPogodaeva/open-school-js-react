@@ -1,8 +1,8 @@
+import productImg from '@/shared/assets/images/product-detail.png';
+import cartIcon from '@/shared/assets/images/cart-icon.svg';
+import { CartItem } from '@/entities/cart';
+import { cartData } from '@/shared/mocks/mock';
 import style from './CartPage.module.scss';
-import productImg from '../../../shared/assets/images/product-detail.png';
-import cartIcon from '../../../shared/assets/images/cart-icon.svg';
-import { CartItem } from '../../../entities/cart';
-import { cartData } from '../../../shared/mocks/mock';
 
 export function CartPage() {
   return (

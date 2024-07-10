@@ -15,6 +15,13 @@ module.exports = {
   parserOptions: {
     project: './tsconfig.app.json',
   },
+  settings: {
+    'import/resolver': {
+      typescript: {
+        project: './tsconfig.app.json',
+      },
+    },
+  },
   plugins: ['react-refresh', 'react', '@typescript-eslint', 'prettier'],
   rules: {
     'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],

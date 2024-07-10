@@ -1,6 +1,6 @@
 import { useState } from 'react';
+import addIcon from '@/shared/assets/images/plus.svg';
 import style from './Accordion.module.scss';
-import addIcon from '../../../assets/images/plus.svg';
 import { AccordionItemProps } from '../types';
 
 export function AccordionItem({ title, content }: AccordionItemProps) {

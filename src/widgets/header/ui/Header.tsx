@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
+import cartIcon from '@/shared/assets/images/cart.svg';
 import style from './Header.module.scss';
-import cartIcon from '../../../shared/assets/images/cart.svg';
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

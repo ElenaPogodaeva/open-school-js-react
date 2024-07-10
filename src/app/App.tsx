@@ -1,9 +1,9 @@
 import { Route, Routes } from 'react-router-dom';
-import { Layout } from '../pages/layout';
-import { HomePage } from '../pages/home';
-import { ProductDetail } from '../pages/product-detail';
-import { CartPage } from '../pages/cart';
-import { NotFoundPage } from '../pages/not-found';
+import { Layout } from '@/pages/layout';
+import { HomePage } from '@/pages/home';
+import { ProductDetail } from '@/pages/product-detail';
+import { CartPage } from '@/pages/cart';
+import { NotFoundPage } from '@/pages/not-found';
 
 function App() {
   return (
