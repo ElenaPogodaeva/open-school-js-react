@@ -36,28 +36,6 @@
   margin-bottom: 30px;
 }
 
-.catalogTitle {
-  margin-bottom: 48px;
-}
-.catalogInput {
-  font-size: 16px;
-  line-height: 22px;
-  color: $black;
-  background: $light-gray;
-  border-radius: 4px;
-  padding: 20px;
-  width: 100%;
-  margin-bottom: 48px;
-  &::placeholder {
-    color: $font-gray;
-  }
-}
-
-.catalogBtn {
-  display: block;
-  margin: 0 auto;
-}
-
 .faqSection {
   padding: 60px 0;
 }

@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { productsApi } from '@/entities/product/api/product';
+import { productsApi } from '@/entities/product/api';
 import { setupListeners } from '@reduxjs/toolkit/query';
-import { cartSlice } from '../entities/cart/model/cartSlice';
+import { productsSlice } from '@/entities/product';
+import { cartSlice } from '@/entities/cart';
 
 export const store = configureStore({
   reducer: {
     cart: cartSlice.reducer,
+    products: productsSlice.reducer,
     [productsApi.reducerPath]: productsApi.reducer,
   },
 

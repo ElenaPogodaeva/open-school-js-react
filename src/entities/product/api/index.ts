@@ -35,7 +35,7 @@ export const productsApi = createApi({
       },
 
       forceRefetch({ currentArg, previousArg }) {
-        return currentArg !== previousArg;
+        return currentArg?.page !== previousArg?.page || currentArg?.search !== previousArg?.search;
       },
     }),
     getProductById: builder.query<IProduct, string>({
