@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from '@/shared/lib/hooks';
 import { resetPage, setCurrentPage, setSearchValue } from '@/entities/product/model/productsSlice';
 import debounce from 'lodash.debounce';
 import { ProductList } from '@/widgets/product-list';
+import { Loader } from '@/shared/ui';
 import style from './Catalog.module.scss';
 
 export function Catalog() {
@@ -35,6 +36,7 @@ export function Catalog() {
     dispatch(setCurrentPage());
   };
 
+  if (isLoading) return <Loader />;
   if (isError) {
     return <p>An error has occurred</p>;
   }
