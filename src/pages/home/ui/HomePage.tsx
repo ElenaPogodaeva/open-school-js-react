@@ -1,9 +1,42 @@
 import { ProductList } from '@/widgets/product-list';
 import { Accordion } from '@/shared/ui';
-import { productData, questionsData } from '@/shared/mocks/mock';
+import { useState } from 'react';
+import { useGetProductsQuery } from '@/entities/product/api/product';
+import { questionsData } from '@/shared/mocks/mock';
 import style from './HomePage.module.scss';
 
 export function HomePage() {
+  const [searchValue, setSearchValue] = useState('');
+
+  const [currentPage, setCurrentPage] = useState(0);
+
+  const queryParams = {
+    search: searchValue,
+    page: currentPage,
+  };
+
+  const { data, isLoading, isError } = useGetProductsQuery(queryParams);
+
+  const products = data?.products ?? [];
+  const total = data?.total;
+
+  const hasMore = products.length < total;
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    const { value } = event.target;
+    setCurrentPage(0);
+    setSearchValue(value);
+  };
+
+  const handleLoadMore = () => {
+    if (isLoading) return;
+    setCurrentPage((prev) => prev + 1);
+  };
+
+  if (isError) {
+    return <div>An error has occurred</div>;
+  }
+
   return (
     <>
       <section className={`dark-section ${style.heroSection}`}>
@@ -27,20 +60,25 @@ export function HomePage() {
           <h2 className={`section-title ${style.catalogTitle}`} id="catalog">
             Catalog
           </h2>
-          <input type="text" className={style.catalogInput} placeholder="Search by title" />
-          <ProductList products={productData} />
-          <button type="button" className={`button ${style.catalogBtn}`}>
-            Show more
-          </button>
+          <input
+            type="text"
+            className={style.catalogInput}
+            value={searchValue}
+            onChange={handleChange}
+            placeholder="Search by title"
+          />
+          <ProductList products={products} />
+          {hasMore && (
+            <button onClick={handleLoadMore} type="button" className={`button ${style.catalogBtn}`}>
+              {isLoading ? 'Loading...' : 'Show more'}
+            </button>
+          )}
         </div>
       </section>
       <section className={`dark-section ${style.faqSection}`}>
         <div className={style.faqContainer}>
           <h2 className={`section-title ${style.faqTitle}`}>FAQ</h2>
           <Accordion items={questionsData} />
-          {/* {questionsData.map((item, index) => (
-            <Accordion key={index} title={item.title} content={item.content} />
-          ))} */}
         </div>
       </section>
     </>
