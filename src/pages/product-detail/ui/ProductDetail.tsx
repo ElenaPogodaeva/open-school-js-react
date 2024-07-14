@@ -1,8 +1,9 @@
 import { useParams } from 'react-router-dom';
-import { Star } from '@/shared/ui';
+import { CartControls, Star } from '@/shared/ui';
 import { useGetProductByIdQuery } from '@/entities/product/api';
 import { useState } from 'react';
 import { calcDiscountPrice } from '@/shared/lib/price';
+import { useAppSelector } from '@/shared/lib/hooks';
 import style from './ProductDetail.module.scss';
 
 const MAX_RATING = 5;
@@ -19,6 +20,8 @@ export function ProductDetail() {
 
   const [currImgIndex, setCurrImgIndex] = useState(0);
 
+  const { cart } = useAppSelector((state) => state.cart);
+
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <p>Error occured</p>;
   if (!product) return <div>Missing product!</div>;
@@ -29,6 +32,8 @@ export function ProductDetail() {
 
   const roundRating = Math.round(rating);
 
+  const productInCart = cart?.products.find((item) => item.id === Number(id));
+  
   return (
     <section className="section">
       <div className="container">
@@ -41,10 +46,10 @@ export function ProductDetail() {
               {product.images.length > 1 &&
                 product.images.map((item, index) => (
                   <div
+                    key={index}
                     className={`${style.thumbnail} ${index === currImgIndex ? style.active : ''}`}
                   >
                     <img
-                      key={index}
                       src={item}
                       alt="Product thumbnail"
                       onClick={() => setCurrImgIndex(index)}
@@ -78,9 +83,13 @@ export function ProductDetail() {
                   Your discount: <span>{product.discountPercentage}%</span>
                 </div>
               </div>
-              <button type="button" className="button">
-                Add to cart
-              </button>
+              {productInCart ? (
+                <CartControls quantity={productInCart.quantity} />
+              ) : (
+                <button type="button" className="button">
+                  Add to cart
+                </button>
+              )}
             </div>
           </div>
         </div>
