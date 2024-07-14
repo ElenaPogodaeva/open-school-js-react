@@ -1,11 +1,12 @@
 import { CartItem } from '@/entities/cart';
 import { useAppSelector } from '@/shared/lib/hooks';
+import { Loader } from '@/shared/ui';
 import style from './CartPage.module.scss';
 
 export function CartPage() {
   const { cart, isLoading, error } = useAppSelector((state) => state.cart);
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Loader />;
   if (error) return <p>Error occured</p>;
 
   const cartNotEmpty = cart && cart.totalQuantity > 0;

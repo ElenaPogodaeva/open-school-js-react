@@ -1,6 +1,6 @@
 import { Accordion } from '@/shared/ui';
 import { questionsData } from '@/shared/mocks/mock';
-import { Catalog } from '@/widgets/catalog-section';
+import { Catalog } from '@/widgets/catalog';
 import style from './HomePage.module.scss';
 
 export function HomePage() {

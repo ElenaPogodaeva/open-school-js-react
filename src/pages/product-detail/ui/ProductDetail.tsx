@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { CartControls, Star } from '@/shared/ui';
+import { CartControls, Loader, Star } from '@/shared/ui';
 import { useGetProductByIdQuery } from '@/entities/product/api';
 import { useState } from 'react';
 import { calcDiscountPrice } from '@/shared/lib/price';
@@ -22,7 +22,7 @@ export function ProductDetail() {
 
   const { cart } = useAppSelector((state) => state.cart);
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Loader />;
   if (isError) return <p>Error occured</p>;
   if (!product) return <div>Missing product!</div>;
 
@@ -33,14 +33,14 @@ export function ProductDetail() {
   const roundRating = Math.round(rating);
 
   const productInCart = cart?.products.find((item) => item.id === Number(id));
-  
+
   return (
     <section className="section">
       <div className="container">
         <div className={style.content}>
           <div className={style.gallery}>
             <div className={style.mainImg}>
-              <img src={product.images[currImgIndex]} alt="Product" />
+              <img src={product.images[currImgIndex]} alt="Product" loading="lazy" />
             </div>
             <div className={style.thumbnailWrapper}>
               {product.images.length > 1 &&
@@ -69,7 +69,7 @@ export function ProductDetail() {
               <span>{product.tags.join(', ')}</span>
             </div>
             <p className={style.stock}>In Stock - Only {product.stock} left!</p>
-            <p className={style.description}>{product.description}</p>
+            <p className={style.description}>{product?.description}</p>
             <div className={style.other}>
               <p>{product.warrantyInformation}</p>
               <p>{product.shippingInformation}</p>
