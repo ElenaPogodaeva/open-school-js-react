@@ -1,35 +1,26 @@
-import productImg from '@/shared/assets/images/product-detail.png';
-import addIcon from '@/shared/assets/images/plus.svg';
-import minusIcon from '@/shared/assets/images/minus.svg';
+import { CartControls } from '@/shared/ui';
+import { calcDiscountPrice } from '@/shared/lib/price';
 import style from './CartItem.module.scss';
-import { IProduct } from '../../product/model/types';
+import { ICartProduct } from '../model/types';
 
-type ProductProps = {
-  product: IProduct;
+type CartItemProps = {
+  product: ICartProduct;
 };
 
-export function CartItem({ product }: ProductProps) {
-  const { title, price, count } = product;
+export function CartItem({ product }: CartItemProps) {
+  const { title, price, discountPercentage, quantity, thumbnail } = product;
 
   return (
     <div className={style.cartItem}>
       <div className={style.itemLeft}>
-        <img src={productImg} className={style.itemImg} alt="Product" />
+        <img src={thumbnail} className={style.itemImg} alt="Product" />
         <div className={style.itemContent}>
           <h3 className={style.itemTitle}>{title}</h3>
-          <p className={style.itemPrice}>{price} $</p>
+          <p className={style.itemPrice}>{calcDiscountPrice(price, discountPercentage)} $</p>
         </div>
       </div>
       <div className={style.itemControl}>
-        <div className={style.addControl}>
-          <button type="button" className="button add-button">
-            <img src={addIcon} alt="Add" />
-          </button>
-          <p>{count} item</p>
-          <button type="button" className="button add-button">
-            <img src={minusIcon} alt="Minus" />
-          </button>
-        </div>
+        <CartControls quantity={quantity} />
         <button type="button" className={style.deleteBtn}>
           Delete
         </button>

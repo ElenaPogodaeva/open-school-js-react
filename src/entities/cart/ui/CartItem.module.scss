@@ -5,7 +5,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 48px;
+  justify-content: space-between;
   padding: 12px;
   padding-right: 24px;
   margin-bottom: 10px;
@@ -48,16 +48,6 @@
   flex-wrap: wrap;
   align-items: center;
   gap: 48px;
-}
-
-.addControl {
-  display: flex;
-  align-items: center;
-  p {
-    font-size: 14px;
-    line-height: 140%;
-    padding: 15px 28px;
-  }
 }
 
 .deleteBtn {

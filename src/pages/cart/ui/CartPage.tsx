@@ -1,46 +1,43 @@
-import productImg from '@/shared/assets/images/product-detail.png';
-import cartIcon from '@/shared/assets/images/cart-icon.svg';
 import { CartItem } from '@/entities/cart';
-import { cartData } from '@/shared/mocks/mock';
+import { useAppSelector } from '@/shared/lib/hooks';
 import style from './CartPage.module.scss';
 
 export function CartPage() {
+  const { cart, isLoading, error } = useAppSelector((state) => state.cart);
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <p>Error occured</p>;
+
+  const cartNotEmpty = cart && cart.totalQuantity > 0;
+
   return (
     <section className="section">
       <div className="container">
         <h2 className={`section-title ${style.cartTitle}`}>My cart</h2>
-        <div className={style.content}>
-          <div className={style.cartWrapper}>
-            {Boolean(cartData.length) &&
-              cartData.map((product) => <CartItem key={product.id} product={product} />)}
-            <div className={style.cartItem}>
-              <div className={style.itemLeft}>
-                <img src={productImg} className={style.itemImg} alt="Product" />
-                <div className={style.itemContent}>
-                  <h3 className={style.itemTitle}>Essence Mascara Lash Princess</h3>
-                  <p className={style.itemPrice}>110 $</p>
-                </div>
+        {!cartNotEmpty ? (
+          <div className={style.empty}>No items</div>
+        ) : (
+          <div className={style.content}>
+            <div className={style.cartWrapper}>
+              {Boolean(cart.products.length) &&
+                cart.products.map((product) => <CartItem key={product.id} product={product} />)}
+            </div>
+            <div className={style.total}>
+              <div className={`${style.totalItem} ${style.totalCount}`}>
+                Total count
+                <span>{cart.totalProducts} items</span>
               </div>
-              <button type="button" className="button add-button">
-                <img src={cartIcon} alt="Cart Icon" />
-              </button>
+              <div className={`${style.totalItem} ${style.totalDiscount}`}>
+                Price without discount
+                <span>{cart.total}$</span>
+              </div>
+              <div className={`${style.totalItem} ${style.totalPrice}`}>
+                Total price
+                <span>{cart.discountedTotal}$</span>
+              </div>
             </div>
           </div>
-          <div className={style.total}>
-            <div className={`${style.totalItem} ${style.totalCount}`}>
-              Total count
-              <span>{cartData.length} items</span>
-            </div>
-            <div className={`${style.totalItem} ${style.totalDiscount}`}>
-              Price without discount
-              <span>700$</span>
-            </div>
-            <div className={`${style.totalItem} ${style.totalPrice}`}>
-              Total price
-              <span>590$</span>
-            </div>
-          </div>
-        </div>
+        )}
       </div>
     </section>
   );
