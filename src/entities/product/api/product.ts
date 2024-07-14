@@ -25,8 +25,13 @@ export const productsApi = createApi({
         const { page, ...otherArgs } = queryArgs;
         return otherArgs;
       },
-      merge: (currentCache, newItems) => {
-        currentCache.products.push(...newItems.products);
+      merge: (currentCache, newItems, { arg }) => {
+        const { page } = arg;
+        if (page > 0) {
+          currentCache.products.push(...newItems.products);
+          return currentCache;
+        }
+        return newItems;
       },
 
       forceRefetch({ currentArg, previousArg }) {

@@ -1,8 +1,9 @@
 import { ProductList } from '@/widgets/product-list';
 import { Accordion } from '@/shared/ui';
-import { useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { useGetProductsQuery } from '@/entities/product/api/product';
 import { questionsData } from '@/shared/mocks/mock';
+import debounce from 'lodash.debounce';
 import style from './HomePage.module.scss';
 
 export function HomePage() {
@@ -18,15 +19,17 @@ export function HomePage() {
   const { data, isLoading, isError } = useGetProductsQuery(queryParams);
 
   const products = data?.products ?? [];
-  const total = data?.total;
+  const total = data?.total ?? 0;
 
   const hasMore = products.length < total;
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
-    setCurrentPage(0);
     setSearchValue(value);
+    setCurrentPage(0);
   };
+
+  const debouncedChange = debounce(handleChange, 1000);
 
   const handleLoadMore = () => {
     if (isLoading) return;
@@ -63,8 +66,7 @@ export function HomePage() {
           <input
             type="text"
             className={style.catalogInput}
-            value={searchValue}
-            onChange={handleChange}
+            onChange={debouncedChange}
             placeholder="Search by title"
           />
           <ProductList products={products} />
