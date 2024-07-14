@@ -1,10 +1,15 @@
 import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
-import cartIcon from '@/shared/assets/images/cart.svg';
+import cartIcon from '@/shared/assets/images/cart-icon.svg';
+import { useAppSelector } from '@/shared/lib/hooks';
 import style from './Header.module.scss';
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const { cart } = useAppSelector((state) => state.cart);
+
+  const cartNotEmpty = cart && cart.totalQuantity > 0;
 
   return (
     <header className={style.header}>
@@ -38,9 +43,10 @@ export function Header() {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/" className={`menu-link ${style.cartLink}`}>
+                <NavLink to="/cart" className={`menu-link ${style.cartLink}`}>
                   Cart
                   <img src={cartIcon} alt="Cart Icon" />
+                  {cartNotEmpty && <div className={style.cartCounter}>{cart.totalQuantity}</div>}
                 </NavLink>
               </li>
               <li>
