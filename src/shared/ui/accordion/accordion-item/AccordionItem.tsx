@@ -12,9 +12,18 @@ export function AccordionItem({ title, content }: AccordionItemProps) {
 
   return (
     <div onClick={handleClick}>
-      <div className={style.accordion}>
+      <div
+        className={style.accordion}
+        aria-label={isOpen ? 'Open accordion' : 'Close accordion'}
+        aria-expanded={isOpen}
+      >
         <h3>{title}</h3>
-        <img className={`${isOpen ? style.active : ''}`} src={addIcon} alt="Open Icon" />
+        <img
+          className={`${isOpen ? style.active : ''}`}
+          src={addIcon}
+          alt="Open Icon"
+          aria-hidden="true"
+        />
       </div>
       <div className={`${style.accordionText} ${isOpen ? style.active : ''}`}>
         <p>{content}</p>

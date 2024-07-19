@@ -1,4 +1,4 @@
-@import '../../../shared/styles/App.variables.scss';
+@import '@/shared/styles/App.variables.scss';
 
 .product {
   width: calc(33.3% - 30px);
@@ -11,6 +11,15 @@
   // &:hover .overlay {
   //   opacity: 1;
   // }
+}
+
+.product:not(:has(button:hover)):hover {
+  .overlay {
+    opacity: 1;
+  }
+  .productTitle {
+    text-decoration: underline;
+  }
 }
 
 .productImg {

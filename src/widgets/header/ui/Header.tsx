@@ -20,16 +20,18 @@ export function Header() {
           </NavLink>
           <button
             type="button"
-            aria-label="Close"
             className={style.menuIcon}
             onClick={() => setIsMenuOpen(true)}
+            aria-label="Open menu"
+            aria-hidden="true"
           />
           <nav className={`${style.headerMenu} ${isMenuOpen ? style.active : ''}`}>
             <button
               type="button"
-              aria-label="Menu"
               className={style.closeIcon}
               onClick={() => setIsMenuOpen(false)}
+              aria-label="Close menu"
+              aria-hidden="true"
             />
             <ul className="menu-list">
               <li>

@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useAppSelector } from '@/shared/lib/hooks';
 import { CartControls } from '@/shared/ui';
 import { calcDiscountPrice } from '@/shared/lib/price';
@@ -12,47 +11,29 @@ type ProductProps = {
 };
 
 export function Product({ product }: ProductProps) {
-  const [isHover, setIsHover] = useState(false);
-
   const { id, title, price, discountPercentage } = product;
 
   const { cart } = useAppSelector((state) => state.cart);
 
   const discountPrice = calcDiscountPrice(price, discountPercentage);
 
-  const navigate = useNavigate();
-
-  const handleProductClick = () => {
-    navigate(`/product/${id}`);
-  };
-
-  const stopPropagation = (e: React.MouseEvent<HTMLElement>) => {
-    e.stopPropagation();
-  };
-
   const handleCartClick = (e: React.MouseEvent<HTMLElement>) => {
-    stopPropagation(e);
-    //
+    e.preventDefault();
   };
 
   const productInCart = cart?.products.find((item) => item.id === id);
 
   return (
-    <div
-      className={style.product}
-      onMouseOver={() => setIsHover(true)}
-      onMouseOut={() => setIsHover(false)}
-      onClick={handleProductClick}
-    >
+    <Link to={`/product/${id}`} className={style.product} aria-label="Product card">
       <div className={style.imgWrapper}>
         <img src={product.thumbnail} className={style.productImg} alt="Product" />
-        <div className={`${style.overlay} ${isHover ? style.active : ''}`}>
+        <div className={style.overlay}>
           <div className={style.overlayText}>Show details</div>
         </div>
       </div>
       <div className={style.productContent}>
         <div className={style.productText}>
-          <p className={`${style.productTitle} ${isHover ? style.active : ''}`}>{title}</p>
+          <p className={style.productTitle}>{title}</p>
           <p className={style.productPrice}>{discountPrice} $</p>
         </div>
         {productInCart ? (
@@ -61,13 +42,13 @@ export function Product({ product }: ProductProps) {
           <button
             type="button"
             className="button add-button"
-            onMouseOver={stopPropagation}
             onClick={handleCartClick}
+            aria-label="Add product to card"
           >
             <img src={cartIcon} alt="Cart Icon" />
           </button>
         )}
       </div>
-    </div>
+    </Link>
   );
 }

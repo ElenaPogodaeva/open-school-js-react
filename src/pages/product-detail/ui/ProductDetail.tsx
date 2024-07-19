@@ -59,7 +59,7 @@ export function ProductDetail() {
             </div>
           </div>
           <div className={style.info}>
-            <h2 className={`section-title ${style.productTitle}`}>{product.title}</h2>
+            <h1 className={`section-title ${style.productTitle}`}>{product.title}</h1>
             <div className={style.meta}>
               <div className={style.rating}>
                 {stars.map((_, index) => (

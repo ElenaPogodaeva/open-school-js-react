@@ -1,5 +1,6 @@
 import { CartControls } from '@/shared/ui';
 import { calcDiscountPrice } from '@/shared/lib/price';
+import { Link } from 'react-router-dom';
 import style from './CartItem.module.scss';
 import { ICartProduct } from '../model/types';
 
@@ -8,10 +9,14 @@ type CartItemProps = {
 };
 
 export function CartItem({ product }: CartItemProps) {
-  const { title, price, discountPercentage, quantity, thumbnail } = product;
+  const { id, title, price, discountPercentage, quantity, thumbnail } = product;
+
+  const handleDeleteClick = (e: React.MouseEvent<HTMLElement>) => {
+    e.preventDefault();
+  };
 
   return (
-    <div className={style.cartItem}>
+    <Link to={`/product/${id}`} className={style.cartItem}>
       <div className={style.itemLeft}>
         <img src={thumbnail} className={style.itemImg} alt="Product" />
         <div className={style.itemContent}>
@@ -21,10 +26,10 @@ export function CartItem({ product }: CartItemProps) {
       </div>
       <div className={style.itemControl}>
         <CartControls quantity={quantity} />
-        <button type="button" className={style.deleteBtn}>
+        <button type="button" className={style.deleteBtn} onClick={handleDeleteClick}>
           Delete
         </button>
       </div>
-    </div>
+    </Link>
   );
 }

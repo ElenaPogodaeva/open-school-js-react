@@ -24,7 +24,7 @@
   width: 40px;
   height: 40px;
   background-color: transparent;
-  background: url(../../assets/menu.svg) center no-repeat;
+  background: url(@/shared/assets/images/menu.svg) center no-repeat;
 }
 
 .cartCounter {
@@ -50,7 +50,7 @@
   width: 30px;
   height: 30px;
   background-color: $bg-dark;
-  background: url(../../assets/close.svg) center no-repeat;
+  background: url(@/shared/assets/images/close.svg) center no-repeat;
 }
 
 @media(max-width: 768px) {
