@@ -49,7 +49,7 @@ export function Catalog() {
         </h2>
         <input
           type="text"
-          className={style.catalogInput}
+          className={`input ${style.catalogInput}`}
           onChange={debouncedChange}
           placeholder="Search by title"
         />
