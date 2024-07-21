@@ -46,7 +46,6 @@ export function CartControls({ product, stock }: CartControlsProps) {
     }
   };
 
-  // const findProduct = products.find((item) => item.id === product.id);
   return (
     <div className={style.addControl} onClick={handleClick}>
       <button

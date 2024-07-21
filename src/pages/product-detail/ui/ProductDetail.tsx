@@ -99,7 +99,7 @@ export function ProductDetail() {
                 </div>
               </div>
               {productInCart ? (
-                <CartControls product={productInCart} />
+                <CartControls product={productInCart} stock={product.stock} />
               ) : (
                 <button type="button" className="button" onClick={addProduct}>
                   Add to cart

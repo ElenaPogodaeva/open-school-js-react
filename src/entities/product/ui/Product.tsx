@@ -13,7 +13,7 @@ type ProductProps = {
 };
 
 export function Product({ product }: ProductProps) {
-  const { id, title, price, discountPercentage } = product;
+  const { id, title, price, discountPercentage, stock } = product;
 
   const { cart } = useAppSelector((state) => state.cart);
 
@@ -51,7 +51,7 @@ export function Product({ product }: ProductProps) {
         </div>
 
         {productInCart ? (
-          <CartControls product={productInCart} />
+          <CartControls product={productInCart} stock={stock} />
         ) : (
           <button
             type="button"
