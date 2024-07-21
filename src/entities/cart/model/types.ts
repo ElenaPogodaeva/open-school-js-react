@@ -7,6 +7,7 @@ export interface ICart {
   totalProducts: number;
   totalQuantity: number;
 }
+
 export interface ICartProduct {
   id: number;
   title: string;
@@ -17,7 +18,27 @@ export interface ICartProduct {
   discountedTotal: number;
   thumbnail: string;
 }
+
 export interface ICartResponse {
   carts: ICart[];
   total: number;
+}
+
+export interface IProductUpdate {
+  id: number;
+  quantity: number;
+}
+
+export interface ICartUpdateRequest {
+  merge: boolean;
+  products: IProductUpdate[];
+}
+
+export interface IConfig {
+  method: string;
+  headers: {
+    Authorization?: string;
+    'Content-Type'?: string;
+  };
+  body?: string;
 }
