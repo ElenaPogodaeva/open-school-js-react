@@ -13,7 +13,7 @@ import { Loader } from '@/shared/ui';
 import { PrivateOutlet } from './PrivateOutlet';
 
 function App() {
-  const { data: user, isLoading, isError } = useGetCurrentUserQuery();
+  const { data: user, isLoading } = useGetCurrentUserQuery();
 
   const dispatch = useAppDispatch();
 
@@ -22,7 +22,6 @@ function App() {
   }, [user, dispatch]);
 
   if (isLoading) return <Loader />;
-  if (isError) return <p>Error occured</p>;
 
   return (
     <Routes>

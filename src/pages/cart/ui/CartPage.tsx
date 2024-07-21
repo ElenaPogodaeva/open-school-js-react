@@ -22,6 +22,8 @@ export function CartPage() {
             <div className={style.cartWrapper}>
               {Boolean(cart.products.length) &&
                 cart.products.map((product) => <CartItem key={product.id} product={product} />)}
+              {Boolean(deletedProducts.length) &&
+                deletedProducts.map((product) => <CartItem key={product.id} product={product} />)}
             </div>
             <div className={style.total}>
               <div className={`${style.totalItem} ${style.totalCount}`}>
@@ -39,8 +41,6 @@ export function CartPage() {
             </div>
           </div>
         )}
-        {Boolean(deletedProducts.length) &&
-          deletedProducts.map((product) => <CartItem key={product.id} product={product} />)}
       </div>
     </section>
   );
