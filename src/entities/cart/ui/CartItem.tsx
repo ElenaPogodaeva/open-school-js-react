@@ -42,9 +42,9 @@ export function CartItem({ product }: CartItemProps) {
 
   return (
     <Link to={`/product/${id}`} className={style.cartItem}>
-      <div className={style.itemLeft}>
+      <div className={`${style.itemLeft} ${!productInCart ? style.disabled : ''}`}>
         <img src={thumbnail} className={style.itemImg} alt="Product" />
-        <div className={style.itemContent}>
+        <div>
           <h3 className={style.itemTitle}>{title}</h3>
           <p className={style.itemPrice}>{calcDiscountPrice(price, discountPercentage)} $</p>
         </div>
@@ -67,7 +67,6 @@ export function CartItem({ product }: CartItemProps) {
             <img src={cartIcon} alt="Cart Icon" />
           </button>
         )}
-        {/* <CartControls product={product} /> */}
       </div>
     </Link>
   );

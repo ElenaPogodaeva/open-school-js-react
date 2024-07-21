@@ -4,7 +4,7 @@ import { Loader } from '@/shared/ui';
 import style from './CartPage.module.scss';
 
 export function CartPage() {
-  const { cart, isLoading, error } = useAppSelector((state) => state.cart);
+  const { cart, deletedProducts, isLoading, error } = useAppSelector((state) => state.cart);
 
   if (isLoading) return <Loader />;
   if (error) return <p>Error occured</p>;
@@ -39,6 +39,8 @@ export function CartPage() {
             </div>
           </div>
         )}
+        {Boolean(deletedProducts.length) &&
+          deletedProducts.map((product) => <CartItem key={product.id} product={product} />)}
       </div>
     </section>
   );
