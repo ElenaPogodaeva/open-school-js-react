@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
-import { useAppSelector } from '@/shared/lib/hooks';
+import { useAppDispatch, useAppSelector } from '@/shared/lib/hooks';
 import { CartControls } from '@/shared/ui';
 import { calcDiscountPrice } from '@/shared/lib/price';
+import { useAuth } from '@/shared/lib/useAuth';
+import { updateUserCard } from '@/entities/cart/model/cartThunk';
 import { IProduct } from '../model/types';
 import style from './Product.module.scss';
 import cartIcon from '../../../shared/assets/images/cart-icon.svg';
@@ -17,8 +19,19 @@ export function Product({ product }: ProductProps) {
 
   const discountPrice = calcDiscountPrice(price, discountPercentage);
 
-  const handleCartClick = (e: React.MouseEvent<HTMLElement>) => {
+  const dispatch = useAppDispatch();
+  const token = useAuth().token as string;
+
+  const addProduct = async (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
+
+    const products = [
+      {
+        id,
+        quantity: 1,
+      },
+    ];
+    await dispatch(updateUserCard({ id: cart!.id, products, token }));
   };
 
   const productInCart = cart?.products.find((item) => item.id === id);
@@ -36,13 +49,14 @@ export function Product({ product }: ProductProps) {
           <p className={style.productTitle}>{title}</p>
           <p className={style.productPrice}>{discountPrice} $</p>
         </div>
+
         {productInCart ? (
-          <CartControls quantity={productInCart.quantity} />
+          <CartControls product={productInCart} />
         ) : (
           <button
             type="button"
             className="button add-button"
-            onClick={handleCartClick}
+            onClick={addProduct}
             aria-label="Add product to card"
           >
             <img src={cartIcon} alt="Cart Icon" />

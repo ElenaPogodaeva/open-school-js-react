@@ -1,7 +1,8 @@
 import { NavLink } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import cartIcon from '@/shared/assets/images/cart-icon.svg';
-import { useAppSelector } from '@/shared/lib/hooks';
+import { useAppDispatch, useAppSelector } from '@/shared/lib/hooks';
+import { calcTotal } from '@/entities/cart/model/cartSlice';
 import style from './Header.module.scss';
 
 export function Header() {
@@ -10,6 +11,14 @@ export function Header() {
   const { cart } = useAppSelector((state) => state.cart);
 
   const cartNotEmpty = cart && cart.totalQuantity > 0;
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (cart) {
+      dispatch(calcTotal());
+    }
+  }, [cart]);
 
   return (
     <header className={style.header}>

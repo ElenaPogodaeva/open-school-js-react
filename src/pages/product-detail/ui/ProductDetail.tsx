@@ -3,7 +3,9 @@ import { CartControls, Loader, Star } from '@/shared/ui';
 import { useGetProductByIdQuery } from '@/entities/product/api';
 import { useState } from 'react';
 import { calcDiscountPrice } from '@/shared/lib/price';
-import { useAppSelector } from '@/shared/lib/hooks';
+import { useAppDispatch, useAppSelector } from '@/shared/lib/hooks';
+import { useAuth } from '@/shared/lib/useAuth';
+import { updateUserCard } from '@/entities/cart/model/cartThunk';
 import style from './ProductDetail.module.scss';
 
 const MAX_RATING = 5;
@@ -14,25 +16,38 @@ const colors = {
 };
 
 export function ProductDetail() {
-  const { id } = useParams();
+  const { id } = useParams() as { id: string };
 
-  const { data: product, isLoading, isError } = useGetProductByIdQuery(id as string);
+  const { data: product, isLoading, isError } = useGetProductByIdQuery(id);
 
   const [currImgIndex, setCurrImgIndex] = useState(0);
 
   const { cart } = useAppSelector((state) => state.cart);
 
+  const discountPrice = calcDiscountPrice(product?.price || 0, product?.discountPercentage || 0);
+
+  const roundRating = Math.round(product?.rating || 0);
+
+  const productInCart = cart?.products.find((item) => item.id === +id);
+
+  const dispatch = useAppDispatch();
+  const token = useAuth().token as string;
+
+  const addProduct = async (e: React.MouseEvent<HTMLElement>) => {
+    e.preventDefault();
+
+    const products = [
+      {
+        id: +id,
+        quantity: 1,
+      },
+    ];
+    await dispatch(updateUserCard({ id: cart!.id, products, token }));
+  };
+
   if (isLoading) return <Loader />;
   if (isError) return <p>Error occured</p>;
-  if (!product) return <div>Missing product!</div>;
-
-  const { price, discountPercentage, rating } = product;
-
-  const discountPrice = calcDiscountPrice(price, discountPercentage);
-
-  const roundRating = Math.round(rating);
-
-  const productInCart = cart?.products.find((item) => item.id === Number(id));
+  if (!product) return <div>Missing product</div>;
 
   return (
     <section className="section">
@@ -84,9 +99,9 @@ export function ProductDetail() {
                 </div>
               </div>
               {productInCart ? (
-                <CartControls quantity={productInCart.quantity} />
+                <CartControls product={productInCart} />
               ) : (
-                <button type="button" className="button">
+                <button type="button" className="button" onClick={addProduct}>
                   Add to cart
                 </button>
               )}
