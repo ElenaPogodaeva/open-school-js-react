@@ -4,6 +4,7 @@ import cartIcon from '@/shared/assets/images/cart-icon.svg';
 import { useAppDispatch, useAppSelector } from '@/shared/lib/hooks';
 import { calcTotal } from '@/entities/cart/model/cartSlice';
 import { useAuth } from '@/shared/lib/useAuth';
+import useAnchorsScroll from '@/shared/lib/useAnchorsScroll';
 import style from './Header.module.scss';
 
 export function Header() {
@@ -22,6 +23,8 @@ export function Header() {
       dispatch(calcTotal());
     }
   }, [cart]);
+
+  useAnchorsScroll();
 
   return (
     <header className={style.header}>
@@ -49,12 +52,12 @@ export function Header() {
                 />
                 <ul className="menu-list">
                   <li>
-                    <NavLink to="/" className="menu-link">
+                    <NavLink to="/#catalog" className="menu-link">
                       Catalog
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink to="/" className="menu-link">
+                    <NavLink to="/#faq" className="menu-link">
                       FAQ
                     </NavLink>
                   </li>

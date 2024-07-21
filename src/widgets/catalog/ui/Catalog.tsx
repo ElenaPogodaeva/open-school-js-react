@@ -42,7 +42,7 @@ export function Catalog() {
   }
 
   return (
-    <section className="section">
+    <section className="section" id="catalog">
       <div className="container">
         <h2 className={`section-title ${style.catalogTitle}`} id="catalog">
           Catalog

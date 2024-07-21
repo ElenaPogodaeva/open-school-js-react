@@ -23,7 +23,7 @@ export function HomePage() {
         </div>
       </section>
       <Catalog />
-      <section className={`dark-section ${style.faqSection}`}>
+      <section className={`dark-section ${style.faqSection}`} id="faq">
         <div className={style.faqContainer}>
           <h2 className={`section-title ${style.faqTitle}`}>FAQ</h2>
           <Accordion items={questionsData} />

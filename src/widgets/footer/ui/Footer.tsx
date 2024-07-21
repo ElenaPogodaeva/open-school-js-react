@@ -17,12 +17,12 @@ export function Footer() {
               <nav>
                 <ul className="menu-list">
                   <li>
-                    <NavLink to="/" className="menu-link">
+                    <NavLink to="/#catalog" className="menu-link">
                       Catalog
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink to="/" className="menu-link">
+                    <NavLink to="/#faq" className="menu-link">
                       FAQ
                     </NavLink>
                   </li>
