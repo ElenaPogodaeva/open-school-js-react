@@ -50,6 +50,7 @@ export function Login() {
             {errors?.username && <p className={style.formError}>* login should be fill</p>}
             <input
               type="text"
+              defaultValue="carterb"
               className={`input ${style.formInput}`}
               placeholder="Login"
               {...register('username', { required: true })}
@@ -58,6 +59,7 @@ export function Login() {
             {errors?.password && <p className={style.formError}>* password should be fill</p>}
             <input
               type="password"
+              defaultValue="carterbpass"
               className={`input ${style.formInput}`}
               placeholder="Password"
               {...register('password', { required: true })}

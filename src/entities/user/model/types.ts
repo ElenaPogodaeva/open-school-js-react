@@ -6,7 +6,7 @@ export interface IUser {
   lastName: string;
   gender: string;
   image: string;
-  token?: string;
+  accessToken?: string;
 }
 
 export interface ILogin {
