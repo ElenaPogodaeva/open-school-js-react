@@ -1,0 +1,28 @@
+@import '@/shared/styles/App.variables.scss';
+
+.loginSection {
+  padding: 140px 0 230px;
+}
+
+.loginTitle {
+  margin-bottom: 48px;
+  text-align: center;
+}
+
+.form {
+  margin: 0 auto;
+  padding: 60px;
+  max-width: 600px; 
+  text-align: center;
+  border: 1px solid $link-gray;
+  border-radius: 4px;
+}
+
+.formInput {
+  margin-bottom: 60px;
+}
+
+.formError {
+  color: $red;
+  text-align: left;
+}

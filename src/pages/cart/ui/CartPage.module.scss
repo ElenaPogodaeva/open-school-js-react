@@ -1,0 +1,71 @@
+@import '@/shared/styles/App.variables.scss';
+
+.cartTitle {
+  margin-bottom: 48px;
+}
+
+.content {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 48px;
+}
+
+.cartWrapper {
+  padding: 20px 40px;
+  border: 1px solid $link-gray;
+  border-radius: 4px;
+}
+
+.total {
+  flex: 1 1 auto;
+}
+.totalItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 20px;
+  line-height: 30px;
+  color: $font-gray;
+}
+.totalCount {
+  color: $font-gray;
+  margin-bottom: 10px;
+  span {
+    color: $black;
+  }
+}
+.totalDiscount {
+  font-size: 20px;
+  line-height: 30px;
+  color: $font-gray;
+  margin-bottom: 30px;
+  font-weight: 600;
+  span {
+    color: $black;
+    font-weight: 700;
+  }
+}
+.totalPrice, .empty {
+  font-size: 24px;
+  line-height: 36px;
+  font-weight: 600;
+  color: $font-gray;
+  span {
+    color: $black;
+    font-weight: 700;
+  }
+}
+
+.empty {
+  text-align: center
+}
+
+@media(max-width: 992px) {
+  .content {
+    display: block;
+  }
+  .total {
+    margin-top: 20px;
+  }
+}
